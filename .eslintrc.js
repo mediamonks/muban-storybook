@@ -2,19 +2,20 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: 'vue-eslint-parser',
   parserOptions: {
     sourceType: 'module',
+    parser: 'babel-eslint',
   },
   env: {
     browser: true,
   },
-  extends: ['airbnb-base', 'prettier'],
-  plugins: ['html', 'import', 'prettier'],
+  extends: ['airbnb-base', 'prettier', 'plugin:vue/recommended', 'plugin:vue-types/strongly-recommended'],
+  plugins: ['import', 'prettier', 'vue'],
   settings: {
     'import/resolver': {
       webpack: {
-        config: 'build-tools/config/webpack/webpack.base.conf.js',
+        config: 'build-tools/config/webpack/webpack.conf.base.js',
       },
     },
   },
@@ -40,4 +41,14 @@ module.exports = {
       { singleQuote: true, trailingComma: 'all', printWidth: 100, tabWidth: 2 },
     ],
   },
+  overrides: [
+    {
+      "files": [ "src/**/*.vue"],
+      "rules": {
+        'prettier/prettier': [
+          'off'
+        ],
+      },
+    },
+  ],
 };

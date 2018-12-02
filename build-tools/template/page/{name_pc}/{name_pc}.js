@@ -1,12 +1,13 @@
 {{#if components}}
 {{#each components}}
-import {{this}} from 'component/{{this}}';
+import {{this}} from '../../component/{{this}}';
 {{/each}}
 {{/if}}
 {{#if props}}
 import VueTypes from 'vue-types';
 
 {{/if}}
+// @vue/component
 export default {
   name: '{{name_pc}}',
   {{#if components}}
@@ -24,21 +25,13 @@ export default {
   },
   {{/if}}
   {{#if lifecycle}}
-  beforeCreate() {
-  },
-  created() {
-  },
-  beforeMount() {
-  },
-  mounted() {
-  },
-  beforeUpdate() {
-  },
-  updated() {
-  },
-  beforeDestroy() {
-  },
-  destroyed() {
-  },
+  beforeCreate() {},
+  created() {},
+  beforeMount() {},
+  mounted() {},
+  beforeUpdate() {},
+  updated() {},
+  beforeDestroy() {},
+  destroyed() {},
   {{/if}}
 };

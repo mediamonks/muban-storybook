@@ -1,14 +1,14 @@
-{
-  "presets": [
+module.exports = function(api) {
+  return {
+  presets: [
     [
-      "env",
+      "@babel/preset-env",
       {
-        "targets": {
-          "uglify": true
-        },
-        "modules": "commonjs",
-        "useBuiltIns": true,
-        "exclude": [
+        modules: false,
+        useBuiltIns: "entry",
+        // for uglifyjs...
+        forceAllTransforms: api.env("production"),
+        exclude: [
           "transform-regenerator",
           "es6.typed.data-view",
           "es6.typed.int8-array",
@@ -34,7 +34,6 @@
           "es6.reflect.set",
           "es6.reflect.set-prototype-of",
           "es6.symbol",
-          "transform-es2015-typeof-symbol",
           "es6.math.acosh",
           "es6.math.asinh",
           "es6.math.atanh",
@@ -56,21 +55,28 @@
           "es6.set",
           "es6.weak-map",
           "es6.weak-set"
-        ]
+        ],
+      },
+    ],
+  ],
+  plugins: [
+    "lodash",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-import-meta",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-json-strings",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        legacy: true,
       }
     ],
-    "stage-2"
+    "@babel/plugin-proposal-function-sent",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-proposal-numeric-separator",
+    "@babel/plugin-proposal-throw-expressions"
   ],
-  "plugins": [
-    "lodash",
-    "transform-runtime",
-    "syntax-dynamic-import",
-    [
-      "babel-plugin-transform-builtin-extend",
-      {
-        "globals": ["Error", "Array"]
-      }
-    ]
-  ],
-  "comments": true
-}
+  comments: true,
+};
+};

@@ -1,5 +1,5 @@
 {
-   "destination": "./src/client/store/module",
+   "destination": "./src/store/module",
    "variables": [{
    			"name": "mutations",
    			"type": "input",

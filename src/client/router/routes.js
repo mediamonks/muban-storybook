@@ -1,6 +1,6 @@
-import HomePage from 'page/HomePage';
-import PagePaths from 'data/enum/PagePaths';
-import PageNames from 'data/enum/PageNames';
+import HomePage from '../page/HomePage';
+import PagePaths from '../data/enum/PagePaths';
+import PageNames from '../data/enum/PageNames';
 
 export default [
   {
