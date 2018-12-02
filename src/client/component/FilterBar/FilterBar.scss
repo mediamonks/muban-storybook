@@ -1,0 +1,64 @@
+/* stylelint-disable-next-line block-no-empty */
+:local {
+  .filter-bar {
+    z-index: 1;
+    top: 0;
+    position: relative;
+    background-color: #f6f6f6;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.1);
+    height: 40px;
+    transition: height 0.3s ease-out;
+
+    &.is-enabled {
+      height: 93px;
+    }
+  }
+
+  .container {
+    position: absolute;
+    bottom: 0;
+  }
+
+  label {
+    color: #cfd8dc;
+  }
+
+  .breadcrumbs {
+    display: inline-block;
+    position: relative;
+    padding: 14px 20px 12px;
+    font-size: 15px;
+    font-weight: 200;
+    color: #607d8b;
+
+    .separator {
+      font-size: 8px;
+      opacity: 0.7;
+      position: relative;
+      top: -2px;
+      padding: 4px 6px;
+    }
+  }
+
+  .types,
+  .labels {
+    display: inline-block;
+    position: relative;
+    padding: 13px 20px;
+    font-size: 15px;
+    font-weight: 200;
+
+    a {
+      color: #90a4ae;
+      padding: 0 5px;
+
+      transition: color 0.2s;
+
+      &:hover,
+      &.is-selected {
+        color: #546d7a;
+        font-weight: 400;
+      }
+    }
+  }
+}

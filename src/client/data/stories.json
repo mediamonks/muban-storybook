@@ -1,0 +1,212 @@
+[
+  {
+    "name": "Paragraph",
+    "label": "default",
+    "labels": ["Block"],
+    "types": ["Block"],
+    "description":
+      "A Paragraph block with a \"read more\" section you can show by clicking a button.",
+    "template": {
+      "raw": "{{> paragraph @root }}"
+    },
+    "props": {
+      "title": "What is Lorem Ipsum?",
+      "content":
+        "industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n",
+      "ctaReadMore": "read more...",
+      "contentMore":
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n"
+    },
+    "path": "component/block/paragraph/paragraph.hbs",
+    "source": {
+      "path": "component/block/paragraph/paragraph.hbs",
+      "template":
+        "<link rel=\"stylesheet\" href=\"./paragraph.scss\">\n<script src=\"./Paragraph.ts\"></script>\n\n<div data-component=\"paragraph\">\n  <h2>{{title}}</h2>\n\n  <p>{{{content}}}</p>\n\n  {{#if contentMore }}\n  <p class=\"js-content-more hidden\">{{{contentMore}}}</p>\n\n  {{> general/button text=ctaReadMore }}\n  {{/if}}\n</div>\n",
+      "style":
+        "[data-component='paragraph'] {\n  margin-bottom: 30px;\n\n  .hidden {\n    display: none;\n  }\n}\n",
+      "script":
+        "import AbstractBlock from '../AbstractBlock';\n\nexport default class Paragraph extends AbstractBlock {\n  static displayName: string = 'paragraph';\n\n  private btn: HTMLButtonElement;\n  private contentMore: HTMLParagraphElement;\n\n  constructor(el: HTMLElement) {\n    super(el);\n\n    this.btn = this.element.querySelector('button');\n    if (this.btn) {\n      this.btn.addEventListener('click', this.onButtonClick);\n\n      this.contentMore = <HTMLParagraphElement>this.element.querySelector('.js-content-more');\n    }\n  }\n\n  private onButtonClick = () => {\n    this.contentMore.classList.toggle('hidden');\n\n    if (this.contentMore.classList.contains('hidden')) {\n      this.btn.textContent = 'read more...';\n    } else {\n      this.btn.textContent = 'read less...';\n    }\n  };\n\n  public dispose() {\n    if (this.btn) {\n      this.btn.removeEventListener('click', this.onButtonClick);\n      this.btn = null;\n    }\n\n    super.dispose();\n  }\n}\n"
+    },
+    "slug": "paragraph",
+    "variant": "default"
+  },
+  {
+    "name": "Paragraph",
+    "label": "no more content",
+    "labels": ["Block"],
+    "types": ["Block"],
+    "description": "Without more content, hides the button",
+    "template": {
+      "raw": "<div style=\"max-width: 400px;\">\n\t{{> paragraph @root }}\n</div>"
+    },
+    "props": {
+      "title": "What is Lorem Ipsum?",
+      "content":
+        "industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    },
+    "path": "component/block/paragraph/paragraph.hbs",
+    "source": {
+      "path": "component/block/paragraph/paragraph.hbs",
+      "template":
+        "<link rel=\"stylesheet\" href=\"./paragraph.scss\">\n<script src=\"./Paragraph.ts\"></script>\n\n<div data-component=\"paragraph\">\n  <h2>{{title}}</h2>\n\n  <p>{{{content}}}</p>\n\n  {{#if contentMore }}\n  <p class=\"js-content-more hidden\">{{{contentMore}}}</p>\n\n  {{> general/button text=ctaReadMore }}\n  {{/if}}\n</div>\n",
+      "style":
+        "[data-component='paragraph'] {\n  margin-bottom: 30px;\n\n  .hidden {\n    display: none;\n  }\n}\n",
+      "script":
+        "import AbstractBlock from '../AbstractBlock';\n\nexport default class Paragraph extends AbstractBlock {\n  static displayName: string = 'paragraph';\n\n  private btn: HTMLButtonElement;\n  private contentMore: HTMLParagraphElement;\n\n  constructor(el: HTMLElement) {\n    super(el);\n\n    this.btn = this.element.querySelector('button');\n    if (this.btn) {\n      this.btn.addEventListener('click', this.onButtonClick);\n\n      this.contentMore = <HTMLParagraphElement>this.element.querySelector('.js-content-more');\n    }\n  }\n\n  private onButtonClick = () => {\n    this.contentMore.classList.toggle('hidden');\n\n    if (this.contentMore.classList.contains('hidden')) {\n      this.btn.textContent = 'read more...';\n    } else {\n      this.btn.textContent = 'read less...';\n    }\n  };\n\n  public dispose() {\n    if (this.btn) {\n      this.btn.removeEventListener('click', this.onButtonClick);\n      this.btn = null;\n    }\n\n    super.dispose();\n  }\n}\n"
+    },
+    "slug": "paragraph",
+    "variant": "no-more-content"
+  },
+  {
+    "name": "Two Col",
+    "label": "default",
+    "labels": ["Block"],
+    "types": ["Block"],
+    "description": "A block that has two columns of text, each with its own title.",
+    "template": {
+      "raw": "{{> two-col @root }}"
+    },
+    "props": {
+      "left": {
+        "title": "Where does it come from?",
+        "content":
+          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.<br /><br />The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n"
+      },
+      "right": {
+        "title": "Why do we use it?",
+        "content":
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\n"
+      }
+    },
+    "path": "component/block/two-col/two-col.hbs",
+    "source": {
+      "path": "component/block/two-col/two-col.hbs",
+      "template":
+        "<link rel=\"stylesheet\" href=\"./two-col.scss\">\n\n<div data-component=\"two-col\">\n  {{#with left}}\n  <div class=\"col col-left\">\n    <h3>{{title}}</h3>\n    <p>{{{content}}}</p>\n  </div>\n  {{/with}}\n\n  {{#with right}}\n  <div class=\"col col-right\">\n    <h3>{{title}}</h3>\n    <p>{{{content}}}</p>\n  </div>\n  {{/with}}\n</div>\n",
+      "style":
+        "[data-component='two-col'] {\n  margin-bottom: 30px;\n  font-size: 0;\n\n  .col {\n    width: 50%;\n    display: inline-block;\n    font-size: 1rem;\n    padding-right: 40px;\n    box-sizing: border-box;\n    vertical-align: top;\n  }\n}\n"
+    },
+    "slug": "two-col",
+    "variant": "default"
+  },
+  {
+    "name": "Two Col",
+    "label": "small",
+    "labels": ["Block"],
+    "types": ["Block"],
+    "description": "A smaller wrapper around the two colomns.",
+    "template": {
+      "raw": "<div style=\"max-width: 600px\">\n\t{{> two-col @root }}\n</div>"
+    },
+    "props": {
+      "left": {
+        "title": "Where does it come from?",
+        "content":
+          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.<br /><br />The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n"
+      },
+      "right": {
+        "title": "Why do we use it?",
+        "content":
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\n"
+      }
+    },
+    "path": "component/block/two-col/two-col.hbs",
+    "source": {
+      "path": "component/block/two-col/two-col.hbs",
+      "template":
+        "<link rel=\"stylesheet\" href=\"./two-col.scss\">\n\n<div data-component=\"two-col\">\n  {{#with left}}\n  <div class=\"col col-left\">\n    <h3>{{title}}</h3>\n    <p>{{{content}}}</p>\n  </div>\n  {{/with}}\n\n  {{#with right}}\n  <div class=\"col col-right\">\n    <h3>{{title}}</h3>\n    <p>{{{content}}}</p>\n  </div>\n  {{/with}}\n</div>\n",
+      "style":
+        "[data-component='two-col'] {\n  margin-bottom: 30px;\n  font-size: 0;\n\n  .col {\n    width: 50%;\n    display: inline-block;\n    font-size: 1rem;\n    padding-right: 40px;\n    box-sizing: border-box;\n    vertical-align: top;\n  }\n}\n"
+    },
+    "slug": "two-col",
+    "variant": "small"
+  },
+  {
+    "name": "Button",
+    "label": "with Foo",
+    "labels": ["Generic"],
+    "types": ["Component"],
+    "description": "Just a normal button that says Foo.",
+    "template": {
+      "raw": "{{> button text=text}}"
+    },
+    "props": {
+      "text": "foo"
+    },
+    "path": "component/general/button/button.hbs",
+    "source": {
+      "path": "component/general/button/button.hbs",
+      "template":
+        "<link rel=\"stylesheet\" href=\"./button.scss\">\n\n<button data-component=\"button\">{{text}}</button>\n",
+      "style":
+        "[data-component='button'] {\n  border-radius: 2px;\n  border: 1px solid #ddd;\n  background-color: #eee;\n  padding: 4px 8px;\n  color: #333;\n  cursor: pointer;\n\n  &:hover {\n    color: #000;\n    border-color: #bbb;\n  }\n}\n"
+    },
+    "slug": "button",
+    "variant": "with-foo"
+  },
+  {
+    "name": "Button",
+    "label": "with Click",
+    "labels": ["Generic"],
+    "types": ["Component"],
+    "description": "A special button that you can click!",
+    "template": {
+      "raw": "<div>\n\t{{> button text=text }}\n</div>"
+    },
+    "props": {
+      "text": "Click Me!"
+    },
+    "path": "component/general/button/button.hbs",
+    "source": {
+      "path": "component/general/button/button.hbs",
+      "template":
+        "<link rel=\"stylesheet\" href=\"./button.scss\">\n\n<button data-component=\"button\">{{text}}</button>\n",
+      "style":
+        "[data-component='button'] {\n  border-radius: 2px;\n  border: 1px solid #ddd;\n  background-color: #eee;\n  padding: 4px 8px;\n  color: #333;\n  cursor: pointer;\n\n  &:hover {\n    color: #000;\n    border-color: #bbb;\n  }\n}\n"
+    },
+    "slug": "button",
+    "variant": "with-click"
+  },
+  {
+    "name": "Footer",
+    "label": "default",
+    "labels": ["Layout"],
+    "types": ["Component"],
+    "description": "The footer that we show on each page of the website, contains the copyright.",
+    "template": {
+      "raw": "{{> footer }}"
+    },
+    "props": {},
+    "path": "component/layout/footer/footer.hbs",
+    "source": {
+      "path": "component/layout/footer/footer.hbs",
+      "template":
+        "<link rel=\"stylesheet\" href=\"./footer.scss\">\n\n<div data-component=\"footer\">\n  <p>© 2017 MediaMonks B.V.</p>\n</div>\n",
+      "style":
+        "[data-component='footer'] {\n  border-top: 1px solid #ddd;\n  background-color: #eee;\n  height: 50px;\n\n  p {\n    font-size: 0.7em;\n    text-align: center;\n    color: #555;\n  }\n}\n"
+    },
+    "slug": "footer",
+    "variant": "default"
+  },
+  {
+    "name": "Header",
+    "label": "default",
+    "labels": ["Layout"],
+    "types": ["Component"],
+    "description": "The header that we show on each page of the website, contains the navigation.",
+    "template": {
+      "raw": "{{> header }}"
+    },
+    "props": {},
+    "path": "component/layout/header/header.hbs",
+    "source": {
+      "path": "component/layout/header/header.hbs",
+      "template":
+        "<link rel=\"stylesheet\" href=\"./header.scss\">\n\n<div data-component=\"header\">\n  <ul>\n    <li><a href=\"/home.html\">Home</a></li>\n    <li><a href=\"/about.html\">About</a></li>\n  </ul>\n</div>\n",
+      "style":
+        "[data-component='header'] {\n  border-bottom: 1px solid #ddd;\n  background-color: #eee;\n\n  ul {\n    max-width: $wrapperWidth;\n    margin: 0 auto;\n    padding: 10px 0;\n\n    li {\n      display: inline-block;\n\n      a {\n        color: #444;\n        text-decoration: none;\n        font-size: 1.2em;\n        padding: 1px 10px;\n\n        &:hover {\n          color: #111;\n        }\n\n        &:first-child {\n          padding-left: 0;\n        }\n      }\n    }\n  }\n}\n"
+    },
+    "slug": "header",
+    "variant": "default"
+  }
+]

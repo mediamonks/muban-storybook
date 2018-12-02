@@ -1,0 +1,35 @@
+/* stylelint-disable-next-line block-no-empty */
+:local {
+  /* from parent InfoPanel */
+  .story-info {
+    flex: 4;
+
+    .path {
+      margin-top: 15px;
+    }
+  }
+
+  .story-info {
+    width: 100px;
+    padding: 20px;
+
+    h1 {
+      font-weight: 300;
+      color: #607d8b;
+    }
+
+    > a:hover h1 {
+      color: darken(#607d8b, 10%);
+    }
+
+    .path {
+      color: #90a4ae;
+      font-family: monospace;
+      margin: 0;
+
+      &:hover {
+        color: darken(#90a4ae, 10%);
+      }
+    }
+  }
+}

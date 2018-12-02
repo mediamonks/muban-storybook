@@ -1,0 +1,161 @@
+/* stylelint-disable-next-line block-no-empty */
+:local {
+  .header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    background-color: #546e7a;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    box-sizing: border-box;
+    font-size: 0;
+  }
+
+  .header-block-left {
+    width: 20%;
+    text-align: left;
+  }
+
+  .header-block-right {
+    width: 20%;
+    text-align: right;
+  }
+
+  .header-block-center {
+    width: 60%;
+  }
+
+  .header-title {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 50px;
+    color: white;
+  }
+
+  .search {
+    position: relative;
+    margin: 7px auto 0;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .search-input {
+    position: relative;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(#fff, 0.6);
+    background-color: rgba(#fff, 0.2);
+    padding: 8px 15px 6px;
+    width: 100%;
+    border: 0;
+    box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.1s, color 0.1s;
+    transition-delay: 250ms, 250ms;
+
+    &::placeholder {
+      color: rgba(#fff, 0.6);
+      font-weight: 200;
+    }
+
+    &:focus {
+      outline: none;
+      //background-color: rgba(#fff, 0.3);
+      //box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+      color: rgba(#fff, 0.8);
+      transition-delay: 0ms, 0ms;
+    }
+  }
+
+  .search-icon {
+    content: 'search';
+    position: absolute;
+    right: 5px;
+    top: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+  }
+
+
+  .header-nav {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+
+    li {
+      display: inline-block;
+      line-height: 50px;
+      transition: background-color 0.3s;
+      font-size: 16px;
+
+      &:hover,
+      &.is-selected {
+        background-color: #455a64;
+
+        .device-icon {
+          .phone,
+          .tablet {
+            background-color: #455a64;
+          }
+        }
+      }
+
+      a {
+        padding: 0 5px;
+        color: white;
+        display: block;
+      }
+
+      .device-icon {
+        position: relative;
+
+        .icon-content {
+          position: relative;
+          display: inline-block;
+          width: 24px;
+        }
+
+        .phone,
+        .tablet {
+          position: absolute;
+          display: block;
+          border: 1px solid white;
+          border-radius: 1px;
+          background-color: #546e7a;
+        }
+        .phone {
+          top: 5px;
+          left: 4px;
+          width: 7px;
+          height: 11px;
+
+          .bezel {
+            display: block;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+          }
+        }
+        .tablet {
+          top: 0;
+          left: 8px;
+          width: 12px;
+          height: 16px;
+        }
+      }
+
+      .filter-icon {
+        position: relative;
+        top: 6px;
+      }
+    }
+  }
+}

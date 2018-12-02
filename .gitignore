@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+dist/
+.idea
+stats.json
+*/.idea
+.cache-loader
+.eslintcache
+.stylelintcache
+/*error.txt
+/*-debug.log
+/*-error.log
