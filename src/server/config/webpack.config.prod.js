@@ -48,8 +48,6 @@ module.exports = function(configDir) {
       // Since we ship with json-loader always, it's better to move extensions to here
       // from the default config.
       extensions: ['.hbs', '.js', '.ts', '.yaml', '.json'],
-      // Add support to NODE_PATH. With this we could avoid relative path imports.
-      // Based on this CRA feature: https://github.com/facebookincubator/create-react-app/issues/253
       modules: [
         path.resolve(__dirname, '../../client'),
         path.resolve(__dirname, '../../demo'),

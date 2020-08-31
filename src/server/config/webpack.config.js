@@ -17,67 +17,6 @@ import { getPreviewHeadHtml, getManagerHeadHtml } from '../utils';
 import babelLoaderConfig from './babel';
 import { version } from '../../../package.json';
 
-function getSassLoaderConfig(isDevelopment = true) {
-  return {
-    loader: 'sass-loader',
-    options: {
-      data: '@import "src/client/asset/style/utils.scss";',
-      includePaths: ['src/client/asset/style'],
-      sourceMap: isDevelopment
-    },
-  };
-};
-
-function getVueLoaderConfig(isDevelopment = true) {
-  let scssLoaders;
-
-  if (isDevelopment) {
-    scssLoaders = ['vue-style-loader'].map(loader => ({ loader }));
-    scssLoaders.push({
-      loader: 'css-loader',
-      options: {
-        sourceMap: true
-      }
-    });
-    scssLoaders.push(getSassLoaderConfig());
-  } else {
-    scssLoaders = ExtractTextPlugin.extract({
-      use: [
-        {
-          loader: 'css-loader',
-        },
-        getSassLoaderConfig(isDevelopment),
-      ],
-      fallback: 'vue-style-loader',
-    });
-  }
-
-  const jsLoaders = [
-    {
-      loader: 'babel-loader',
-    },
-  ];
-
-  const config = {
-    loader: 'vue-loader',
-    options: {
-      loaders: {
-        scss: scssLoaders,
-        js: jsLoaders,
-      },
-      postcss: [],
-
-      cssModules: {
-        localIdentName: '[local]-[hash:base64:7]',
-        camelCase: true,
-      },
-      transformToRequire: {
-        source: 'srcset'
-      }},
-  };
-
-  return config;
-};
 
 const projectRoot = path.resolve(__dirname, '../../../');
 console.log('projectRoot', projectRoot);
@@ -224,10 +163,6 @@ export default function(configDir) {
             { loader: "yaml-loader" }
           ]
         },
-        // {
-        //   test: /\.vue$/,
-        //   use: [getVueLoaderConfig(true)],
-        // },
         {
           test: /\.md$/,
           use: [

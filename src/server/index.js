@@ -30,22 +30,9 @@ program
   .option('--ssl-cert <cert>', 'Provide an SSL certificate. (Required with --https)')
   .option('--ssl-key <key>', 'Provide an SSL key. (Required with --https)')
   .option('--smoke-test', 'Exit after successful start')
-  .option('-d, --db-path [db-file]', 'DEPRECATED!')
-  .option('--enable-db', 'DEPRECATED!')
   .parse(process.argv);
 
 console.info(chalk.bold(`${packageJson.name} v${packageJson.version}`) + chalk.reset('\n'));
-
-if (program.enableDb || program.dbPath) {
-  console.error(
-    [
-      'Error: the experimental local database addon is no longer bundled with',
-      'react-storybook. Please remove these flags (-d,--db-path,--enable-db)',
-      'from the command or npm script and try again.',
-    ].join(' ')
-  );
-  process.exit(1);
-}
 
 // The key is the field created in `program` variable for
 // each command line argument. Value is the env variable.
@@ -119,14 +106,6 @@ if (!hasCustomFavicon) {
 // Build the webpack configuration using the `baseConfig`
 // custom `.babelrc` file and `webpack.config.js` files
 const configDir = program.configDir || './.storybook';
-
-// The repository info is sent to the storybook while running on
-// development mode so it'll be easier for tools to integrate.
-const exec = cmd => shelljs.exec(cmd, { silent: true }).stdout.trim();
-process.env.STORYBOOK_GIT_ORIGIN =
-  process.env.STORYBOOK_GIT_ORIGIN || exec('git remote get-url origin');
-process.env.STORYBOOK_GIT_BRANCH =
-  process.env.STORYBOOK_GIT_BRANCH || exec('git symbolic-ref HEAD --short');
 
 // NOTE changes to env should be done before calling `getBaseConfig`
 // `getBaseConfig` function which is called inside the middleware
