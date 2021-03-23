@@ -5,7 +5,8 @@
   "keywords": [
     "muban",
     "storybook",
-    "addon"
+    "addon",
+    "storybook-addon"
   ],
   "author": "Arjan van Wijk",
   "license": "MIT",
