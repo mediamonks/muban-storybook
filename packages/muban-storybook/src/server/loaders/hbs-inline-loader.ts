@@ -40,12 +40,14 @@ export default function loader(this: LoaderContext, source: string) {
       );
     }
 
-    return `{
+    const response = `{
 				compiled: require(${JSON.stringify(
           `!!hbs-build-loader?${hbsBuildLoaderParams}!handlebars-loader?${hbsLoaderParams}!extract-template-loader?target=${index++}!${currentModuleName}`,
         )}),
 				raw: '${content.replace(/'/gi, "\\'")}',
 			}`;
+
+    return response;
   });
 
   done(null, newContent);
