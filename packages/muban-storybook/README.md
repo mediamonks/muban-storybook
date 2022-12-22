@@ -1,5 +1,8 @@
 # @muban/storybook
 
+> **⚠ WARNING:** While version 6.1.0 is backwards compatible, you might need to update the outdated webpack loaders
+> and babel packages of your muban project to not conflict with Storybook 6.5 build.
+
 Storybook for Muban: View Muban components in isolation with Hot Reloading.
 
 This Storybook framework is based on `@storybook/html`, so almost everything you can do

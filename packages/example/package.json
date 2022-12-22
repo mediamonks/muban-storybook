@@ -1,0 +1,24 @@
+{
+  "name": "legacy-muban-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Arjan van Wijk",
+  "license": "MIT",
+  "scripts": {
+    "storybook": "start-storybook -p 6006"
+  },
+  "devDependencies": {
+    "@muban/storybook": "^6.1.0",
+    "muban-core": "^2.1.2",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-webpack5": "^6.5.13",
+    "@storybook/manager-webpack5": "^6.5.13",
+    "handlebars-loader": "^1.7.2",
+    "typescript": "^4.5.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

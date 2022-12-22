@@ -3,18 +3,19 @@ import { document } from 'global';
 import { getComponentForElement, initComponents } from 'muban-core';
 import dedent from 'ts-dedent';
 import type { RenderContext, StoryFnMubanReturnType } from './types';
+import type { ArgsStoryFn } from '@storybook/csf';
+import type { MubanFramework } from './types-6-0';
 
 const rootElement = document.querySelector('#root');
 
-export default function renderMain({
+export function renderToDom({
   storyFn,
-  args,
-  parameters,
   kind,
   name,
   showMain,
   showError,
-}: RenderContext): void {
+  storyContext: { parameters, args },
+}: RenderContext<MubanFramework>): void {
   const componentStory = storyFn(args as any) as StoryFnMubanReturnType;
   showMain();
 
@@ -29,9 +30,9 @@ export default function renderMain({
     showError({
       title: `Expected a template function from the component or story from the story: "${name}" of "${kind}".`,
       description: dedent`
-        The template function is pulled from the component passed to the default export.
-        Did you incorrectly configure the "preset-loader"?
-      `,
+          The template function is pulled from the component passed to the default export.
+          Did you incorrectly configure the "preset-loader"?
+        `,
     });
     return;
   }
@@ -53,3 +54,17 @@ export default function renderMain({
     });
   }
 }
+
+export const render: ArgsStoryFn<MubanFramework> = (props, context) => {
+  const { id, component: Component } = context;
+  if (!Component) {
+    throw new Error(
+      `Unable to render story ${id} as the component annotation is missing from the default export`,
+    );
+  }
+
+  return {
+    component: Component,
+    template: () => '',
+  };
+};

@@ -28,25 +28,23 @@ export function webpack(webpackConfig: Configuration): Configuration {
     module: {
       ...webpackConfig.module,
       rules: [
-        ...(webpackConfig.module?.rules || []),
         {
           test: /\.stories\.(js|ts)$/,
           include: [/src[/\\]app[/\\]component/],
           use: [
+            // ...(webpackConfig.module?.rules.find(rule => String(/\.js$/) === String(rule.test))?.use as any ?? []),
             getHbsInlineLoaderConfig(),
             {
               loader: 'preset-loader',
               options: {},
             },
-            { loader: 'babel-loader', options: {} },
-            {
-              loader: 'awesome-typescript-loader',
-              options: {
-                silent: true,
-              },
-            },
           ],
         },
+        // Order of rules must not change. We need our custom module rules to run before the default storybook
+        // rules, in order for backticks to be replaced by double-quotes in the parsed story files.
+        // This allows the hbs-inline-loader to correctly locate the <hbs> tags and compile the handlebars into
+        // a function.
+        ...(webpackConfig.module?.rules || []),
       ],
     },
     resolveLoader: {
